@@ -7,4 +7,12 @@
     <string name="winner_string">BRAVO, TEST SUPERATO</string>
     <string name="play_again_string">GIOCA ANCORA</string>
     <string name="loser_string">CAPRA! VAI A STUDIARE</string>
+    <string name="new_question_btn_string">NUOVA DOMANDA</string>
+    <string name="question_text_input_string">Scrivi il testo della domanda</string>
+    <string name="option_answer1_string">Opzione di risposta 1</string>
+    <string name="option_answer2_string">Opzione di risposta 2</string>
+    <string name="option_answer3_string">Opzione di risposta 3</string>
+    <string name="right_answer_string">Indicare la risposta esatta ( 0 -> 2 )</string>
+    <string name="save_question_button_string">INSERISCI</string>
+    <string name="show_questions_string">VEDI DOMANDE</string>
 </resources>

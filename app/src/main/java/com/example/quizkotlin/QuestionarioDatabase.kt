@@ -17,15 +17,16 @@ class QuestionarioDatabase(val context: Context) : Questionario {
     override var questions: List<Question>? = null
     get() {
         if(_questions == null) {
-            readQuestions()
+            //readQuestions()
+            _questions = readAllQuestions()
             _questions!!.shuffle()
         }
         // Qua ritorna alla fine 5 domande, casuali.
         return _questions!!.take(5)
     }
-   // override lateinit var riepilogo: MutableList<String>
+    // override lateinit var riepilogo: MutableList<String>
 
-    fun readQuestions() {
+    fun readAllQuestions(): MutableList<Question> {
         val db = QuestionDBHelper(context).readableDatabase
         val projection = arrayOf(_ID, COLUMN_TESTO, COLUMN_OPZIONE1, COLUMN_OPZIONE2, COLUMN_OPZIONE3, COLUMN_RISPOSTA, COLUMN_RISPOSTAU)
 
@@ -39,7 +40,7 @@ class QuestionarioDatabase(val context: Context) : Questionario {
         val answerColumnIndex = cursor.getColumnIndexOrThrow(COLUMN_RISPOSTA)
         val userAnswerColumnIndex = cursor.getColumnIndexOrThrow(COLUMN_RISPOSTAU)
 
-        _questions = mutableListOf<Question>()
+        val questionsList = mutableListOf<Question>()
 
         while (cursor.moveToNext()) {
             val currentId = cursor.getInt(idColumnIndex)
@@ -53,9 +54,9 @@ class QuestionarioDatabase(val context: Context) : Questionario {
             val opzioniRisposta = mutableListOf<String>(currentOptionAnswer1,currentOptionAnswer2,currentOptionAnswer3)
             val domanda = Question(currentQuestionText,opzioniRisposta,currentAnswer,currentUserAnswer)
 
-            //questions.add(domanda)
-            _questions!!.add(domanda)
+            questionsList.add(domanda)
         }
         cursor.close()
+        return questionsList
     }
 }
