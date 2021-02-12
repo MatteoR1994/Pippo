@@ -14,7 +14,16 @@ import com.example.quizkotlin.DatabaseManager.QuestionEntry._ID
 class QuestionarioDatabase(val context: Context) : Questionario {
     //var _questions: MutableList<Question>? = null
     var _questions: MutableList<Question>? = null
-    override var questions: List<Question>? = null
+    override val questions: MutableList<Question>?
+        get() {
+            if(_questions == null) {
+                //readQuestions()
+                _questions = readAllQuestions()
+            }
+            return _questions
+        }
+    override var questionsForQuiz: List<Question>? = null
+
     get() {
         if(_questions == null) {
             //readQuestions()

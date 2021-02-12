@@ -1,7 +1,7 @@
 package com.example.quizkotlin
 
 class QuestionarioMemoria() : Questionario {
-        override val questions= mutableListOf(
+        override val questionsForQuiz= mutableListOf(
             Question("Cos'è una classe?", listOf(
                 "una questione di stile",
                 "un social network",
@@ -18,6 +18,8 @@ class QuestionarioMemoria() : Questionario {
                 "per masochismo"
             ),0),
         )
-        //val riepilogo = Array<String>(3){""}
+    override val questions: MutableList<Question>?
+        get() = questionsForQuiz
+    //val riepilogo = Array<String>(3){""}
         //override val riepilogo = mutableListOf("","","")
 }

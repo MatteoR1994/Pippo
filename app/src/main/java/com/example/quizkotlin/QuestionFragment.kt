@@ -29,7 +29,7 @@ class QuestionFragment : Fragment() {
         sendAnswerButton.setOnClickListener {  //bisogna fare una funzione che faccia questo
             val selected = answersGroup.checkedRadioButtonId
             val selectedButton = answersGroup.findViewById<RadioButton>(selected)
-            var question = questionario.questions!![currentIndex]
+            var question = questionario.questionsForQuiz!![currentIndex]
             val rightAnswer = question.options[question.answer]
             //val pos = answersGroup.indexOfChild(selectedButton)
             //if (pos == currentQuestion.answer)
@@ -40,7 +40,7 @@ class QuestionFragment : Fragment() {
                 questionario.riepilogo[currentIndex] = "SBAGLIATO"
             }*/
             currentIndex++
-            if(currentIndex >= questionario.questions!!.size) {
+            if(currentIndex >= questionario.questionsForQuiz!!.size) {
                 checkGame(v)
             } else {
                 makeQuestion(currentIndex)
@@ -49,7 +49,7 @@ class QuestionFragment : Fragment() {
         return v
     }
     fun makeQuestion(index: Int) {
-        var currentQuestion = questionario.questions!![index]
+        var currentQuestion = questionario.questionsForQuiz!![index]
         questionText.text = currentQuestion.question
         answersGroup.children.forEachIndexed { //vado a prendere i figli radioGroup e su ognuno faccio una azione e so l'indice
             index, button ->
@@ -58,7 +58,7 @@ class QuestionFragment : Fragment() {
         }
     }
     fun checkGame(vista: View) {
-        if(punteggio >= ((questionario.questions!!.size * 2) / 3)) {
+        if(punteggio >= ((questionario.questionsForQuiz!!.size * 2) / 3)) {
             vista.findNavController().navigate(R.id.action_questionFragment_to_winnerFragment)
         } else {
             vista.findNavController().navigate(R.id.action_questionFragment_to_loserFragment)
