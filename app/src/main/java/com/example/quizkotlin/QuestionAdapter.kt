@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizkotlin.DatabaseManager.QuestionEntry.COLUMN_TESTO
 import com.example.quizkotlin.DatabaseManager.QuestionEntry.TABLE_NAME
@@ -13,7 +16,7 @@ import kotlinx.android.synthetic.main.question_details_layout.view.*
 
 class QuestionAdapter(private var questionList: MutableList<Question>) : RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>() {
 
-    class QuestionViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    class QuestionViewHolder(v: View) : RecyclerView.ViewHolder(v),View.OnClickListener{
 
 
         private lateinit var question: Question
@@ -23,7 +26,9 @@ class QuestionAdapter(private var questionList: MutableList<Question>) : Recycle
         private var optionAnswer2: TextView
         private var optionAnswer3: TextView
         init {
+
             view = v
+            v.setOnClickListener(this)
             questionText = view.findViewById(R.id.questionTextItem)
 
             optionAnswer2 = view.findViewById(R.id.optionAnswer2Item)
@@ -72,6 +77,11 @@ class QuestionAdapter(private var questionList: MutableList<Question>) : Recycle
                     this.optionAnswer3.setTextColor(Color.GREEN)
                 }
             }
+        }
+
+        override fun onClick(v: View?) {
+                     val bundle = bundleOf("question" to this.questionText.text.toString())
+                      v?.findNavController()?.navigate(R.id.action_listQuestionsFragment_to_editQuestionFragment, bundle)
         }
     }
 

@@ -63,5 +63,14 @@
         android:id="@+id/listQuestionsFragment"
         android:name="com.example.quizkotlin.ListQuestionsFragment"
         android:label="fragment_list_questions"
-        tools:layout="@layout/fragment_list_questions" />
+        tools:layout="@layout/fragment_list_questions" >
+        <action
+            android:id="@+id/action_listQuestionsFragment_to_editQuestionFragment"
+            app:destination="@id/editQuestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editQuestionFragment"
+        android:name="com.example.quizkotlin.EditQuestionFragment"
+        android:label="fragment_edit_question"
+        tools:layout="@layout/fragment_edit_question" />
 </navigation>
