@@ -72,5 +72,9 @@
         android:id="@+id/editQuestionFragment"
         android:name="com.example.quizkotlin.EditQuestionFragment"
         android:label="fragment_edit_question"
-        tools:layout="@layout/fragment_edit_question" />
+        tools:layout="@layout/fragment_edit_question" >
+        <action
+            android:id="@+id/action_editQuestionFragment_to_listQuestionsFragment"
+            app:destination="@id/listQuestionsFragment" />
+    </fragment>
 </navigation>
