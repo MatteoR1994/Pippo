@@ -6,9 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quizkotlin.DatabaseManager.QuestionEntry.COLUMN_TESTO
+import com.example.quizkotlin.DatabaseManager.QuestionEntry.TABLE_NAME
+import com.example.quizkotlin.DatabaseManager.QuestionEntry._ID
+import kotlinx.android.synthetic.main.question_details_layout.view.*
 
 class QuestionAdapter(private var questionList: List<Question>) : RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>() {
+    lateinit var selectionArgs:Array<String>
     class QuestionViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        var pos : Int? = null
         private lateinit var question: Question
         private var view: View
         private var questionText: TextView
@@ -47,6 +53,24 @@ class QuestionAdapter(private var questionList: List<Question>) : RecyclerView.A
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         val view = inflater.inflate(R.layout.question_details_layout,parent,false)
+        view.deleteBtn.setOnClickListener {
+
+            val mDBHelper = QuestionDBHelper(view.context)
+
+            val db = mDBHelper.writableDatabase
+
+            val selection = "${COLUMN_TESTO} = ?"
+           // val selectionArgs = arrayOf("${(questionList[position].id)}")
+
+            db.delete(TABLE_NAME, selection, selectionArgs)
+
+            questionList.removeAt(pos)
+
+            notifyDataSetChanged()
+
+
+        }
+
         return QuestionViewHolder(view)
     }
 

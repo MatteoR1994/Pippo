@@ -15,4 +15,5 @@
     <string name="right_answer_string">Indicare la risposta esatta ( 0 -> 2 )</string>
     <string name="save_question_button_string">INSERISCI</string>
     <string name="show_questions_string">VEDI DOMANDE</string>
+    <string name="delete_btn_text">Calcella Domanda</string>
 </resources>
